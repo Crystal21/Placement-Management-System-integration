@@ -13,4 +13,6 @@ public interface AssignTPOService {
 
 	public void removeTPO(UserDetailsBean userBean);
 
+	void assignTPCF(UserDetailsBean userBean);
+
 }

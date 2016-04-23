@@ -55,6 +55,12 @@
 	<button>View Allotment List </button>
 	</a></h2> -->
 	<table>
+	<tr>
+			<td><a href="AssignTPCF.html">Assign TPC</a></td>
+		</tr>
+		<tr>
+			<td><a href="ViewUsersF.html">View Users</a></td>
+		</tr>
 		<tr>
 			<td><a href="InsertMonth.html">Insert Month to view
 					Events Users</a><br /></td>

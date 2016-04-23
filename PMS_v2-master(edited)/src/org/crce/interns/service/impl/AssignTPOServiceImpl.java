@@ -45,6 +45,34 @@ public class AssignTPOServiceImpl implements AssignTPOService {
 	}
 
 	@Override
+	public void assignTPCF(UserDetailsBean userBean) {
+		UserDetails user = new UserDetails();
+		UserDetails checkUser = new UserDetails();
+		BeanUtils.copyProperties(userBean, user);
+		checkUser.setUserName(userBean.getUserName());
+
+		checkUser = userDao.getUser(checkUser);
+
+		if (checkUser == null) {
+			System.out.println("Error:No User Defined" + "\n");
+		}
+
+		/*if (checkUser.getRoleId()==2|| checkUser.getRoleId()==4)*/ 
+		if (checkUser.getRoleId().equalsIgnoreCase("1")){
+			System.out.println("Before update Student Role ID : " + checkUser.getRoleId() + "\n");
+			//checkUser.setRoleId(5);
+			checkUser.setRoleId("3");
+			System.out.println("After update Student Role ID : " + checkUser.getRoleId() + "\n");
+			userDao.assignTPO(checkUser);
+		}
+
+		else {
+			System.out.println("Error : No Such User Exists");
+		}
+	}
+	
+	
+	@Override
 	public List<UserDetailsBean> viewUsers() {
 		// TODO Auto-generated method stub
 		List<UserDetails> userList = userDao.viewUsers();

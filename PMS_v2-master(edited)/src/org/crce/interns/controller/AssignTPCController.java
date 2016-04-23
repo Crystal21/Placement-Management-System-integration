@@ -71,6 +71,14 @@ public class AssignTPCController {
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/RemoveTPC", method = RequestMethod.GET)
 	public ModelAndView removeTPC(@ModelAttribute("command") UserDetailsBean userBean, BindingResult result) {
 		System.out.println("In Remove TPC\n");
