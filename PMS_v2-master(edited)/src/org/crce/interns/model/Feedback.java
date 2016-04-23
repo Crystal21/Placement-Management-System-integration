@@ -19,7 +19,7 @@ public class Feedback implements Serializable {
 	 @NotNull 
 	 
 	String username;
-	@Column(name="feedbacks")
+	@Column(name="feedback")
 	 
 	@Size(min=2, max=500)
 	
