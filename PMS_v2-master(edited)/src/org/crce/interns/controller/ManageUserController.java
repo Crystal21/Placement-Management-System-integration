@@ -66,6 +66,13 @@ public class ManageUserController {
 		return new ModelAndView("addFaculty");
 	}
 	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/removeuser", method = RequestMethod.GET)
 	public ModelAndView removeUser() {
 		return new ModelAndView("removeUser");		

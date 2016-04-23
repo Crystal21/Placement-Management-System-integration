@@ -34,7 +34,9 @@ public class UserDetails implements Serializable{
 	Date lastLogin;
 	
 	@Column(name = "role_id" )
-	int roleId;
+	String roleId;
+	
+	//int roleId;
 	
 	@Column(name = "created_by" )
 	String createdBy;
@@ -64,11 +66,11 @@ public class UserDetails implements Serializable{
 			joinColumns = { @JoinColumn(name = "role_id") }, 
             inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	
-	public int getRoleId() {
+	public String getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
 	public String getCreatedBy() {
