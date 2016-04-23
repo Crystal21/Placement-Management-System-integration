@@ -42,6 +42,13 @@ public class AssignTPCController {
 		return new ModelAndView("TPO");
 	}
 	
+	@RequestMapping(value="/ViewUsersT", method = RequestMethod.GET)
+	public ModelAndView viewUsers() {
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		modelMap.put("users", userService.viewUsers());
+		return new ModelAndView("viewUserT", modelMap);
+	}
+	
 	@RequestMapping(value="/ViewFacultyTasks", method = RequestMethod.GET)
 	public ModelAndView viewFacultyTasks() {
 		System.out.println("In View TPC Tasks\n");
@@ -83,8 +90,8 @@ public class AssignTPCController {
 		a=userService.assignTPC(userBean);
 		FacultyUserBean fuserBean= new FacultyUserBean();
 			
-		//return new ModelAndView("redirect:/ViewUsers");
-		return new ModelAndView("redirect:/TPOHome");
+		return new ModelAndView("redirect:/ViewUsersT");
+		//return new ModelAndView("redirect:/TPOHome");
 	}
 	
 		
@@ -114,8 +121,8 @@ public class AssignTPCController {
 			return new ModelAndView("removeTPC");
 		}
 		userService.removeTPC(userBean);
-		//return new ModelAndView("redirect:/ViewUsers");
-		return new ModelAndView("redirect:/TPOHome");
+		return new ModelAndView("redirect:/ViewUsersT");
+	//	return new ModelAndView("redirect:/TPOHome");
 	}
 
 }

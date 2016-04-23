@@ -27,15 +27,10 @@
 			</c:forEach>
 		</table>
 	</c:if>
-	<!-- <tr>
-		<td><a href="AssignTPO.html">Assign TPO</a></td>
-	</tr>
+	
 	<tr>
-		<td><a href="/AddTPO/">Home</a></td>
+		<td><a href="AdminHome">Home</a></td>
 	</tr>
-	<tr>
-		<td><a href="RemoveTPO.html">Remove TPO</a></td>
-	</tr>
- -->
+	
 </body>
 </html>

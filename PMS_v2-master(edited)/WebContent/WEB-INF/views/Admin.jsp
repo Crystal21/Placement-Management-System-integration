@@ -45,8 +45,13 @@
 			<td>4. <a href="RemoveTPO.html">Remove TPO</a><br /></td>
 		</tr>
 		<tr>
-			<td>5. <a href="ViewUsers.html">View Users</a><br /></td>
+			<td>5. <a href="ViewUsersA.html">View Users</a><br /></td>
 		</tr>
+		<tr>
+			<td>6. <a href="InsertMonth.html">Insert Month to view
+					Events Users</a><br /></td>
+		</tr>
+
 
 	</table>
 
@@ -60,9 +65,7 @@
 		</tr>
 		<tr>
 
-			<td><br />
-			<br />
-			<a href="form">Logout</a></td>
+			<td><br /> <br /> <a href="form">Logout</a></td>
 		</tr>
 	</table>
 </body>

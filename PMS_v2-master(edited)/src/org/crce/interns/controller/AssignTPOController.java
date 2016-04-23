@@ -28,15 +28,15 @@ public class AssignTPOController {
 
 	@RequestMapping(value = "/AdminHome", method = RequestMethod.GET)
 	public ModelAndView goAdminHome(@ModelAttribute("command") FacultyUserBean userBean, BindingResult result) {
-		System.out.println("In TPO Home Page\n");
+		System.out.println("In Admin Home Page\n");
 		return new ModelAndView("Admin");
 	}
 	
-	@RequestMapping(value="/ViewUsers", method = RequestMethod.GET)
+	@RequestMapping(value="/ViewUsersA", method = RequestMethod.GET)
 	public ModelAndView viewUsers() {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		modelMap.put("users", userService.viewUsers());
-		return new ModelAndView("viewUser", modelMap);
+		return new ModelAndView("viewUserA", modelMap);
 	}
 
 	@RequestMapping(value = "/AssignTPO", method = RequestMethod.GET)
@@ -63,8 +63,8 @@ public class AssignTPOController {
 		}
 		userService.assignTPO(userBean);
 		
-		//return new ModelAndView("redirect:/ViewUsers");
-		return new ModelAndView("redirect:/AdminHome");
+		return new ModelAndView("redirect:/ViewUsersA");
+		//return new ModelAndView("redirect:/AdminHome");
 	}
 
 	@RequestMapping(value = "/SubmitRemoveTPO", method = RequestMethod.POST)
@@ -75,7 +75,7 @@ public class AssignTPOController {
 			return new ModelAndView("removeTPO");
 		}
 		userService.removeTPO(userBean);
-		//return new ModelAndView("redirect:/ViewUsers");
-		return new ModelAndView("redirect:/AdminHome");
+		return new ModelAndView("redirect:/ViewUsersA");
+		//return new ModelAndView("redirect:/AdminHome");
 	}
 }
