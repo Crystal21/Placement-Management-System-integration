@@ -24,15 +24,10 @@
 			</c:forEach>
 		</table>
 	</c:if>
-	<!-- <tr>
-		<td><a href="/AddTPC/AssignTPC">Assign TPC and Task</a></td>
-	</tr>
+	
 	<tr>
-		<td><a href="/AddTPC/">Home</a></td>
+		<td><a href="TPOHome">Home</a></td>
 	</tr>
-	<tr>
-		<td><a href="/AddTPC/RemoveTPC">Remove TPC</a></td>
-	</tr>
- -->
+	
 </body>
 </html>

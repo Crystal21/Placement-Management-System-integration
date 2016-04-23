@@ -34,22 +34,14 @@ public class AssignTPCController {
 
 	@Autowired
 	AddTPCTaskValidator addTPCTaskValidator;
-	
-	/*@RequestMapping("/")
-	public ModelAndView welcome() {
-		System.out.println("In Index\n");
-		return new ModelAndView("index");
-	}
-*/
-	
-	/*@RequestMapping(value="/ViewUsers", method = RequestMethod.GET)
-	public ModelAndView viewUsers() {
-		System.out.println("In View TPC\n");
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("users", userService.viewUsers());
-		return new ModelAndView("viewUser", modelMap);
-	}*/
 
+
+	@RequestMapping(value = "/TPOHome", method = RequestMethod.GET)
+	public ModelAndView goTPOHome(@ModelAttribute("command") FacultyUserBean userBean, BindingResult result) {
+		System.out.println("In TPO Home Page\n");
+		return new ModelAndView("TPO");
+	}
+	
 	@RequestMapping(value="/ViewFacultyTasks", method = RequestMethod.GET)
 	public ModelAndView viewFacultyTasks() {
 		System.out.println("In View TPC Tasks\n");
@@ -90,17 +82,9 @@ public class AssignTPCController {
 		int a;
 		a=userService.assignTPC(userBean);
 		FacultyUserBean fuserBean= new FacultyUserBean();
-	//	fuserBean.setUsername(userBean.getUsername());
-	/*	System.out.println(userBean.getUserName()+" in Contoller");
-		System.out.println(userBean.getUserRole()+" in Contoller");*/
-		if(userBean.getRoleId().equalsIgnoreCase("2")&& (a==1))
-		{
-			System.out.println("\n\n\n"+fuserBean.getUserName()+" in Contoller");
-			//userService.insertWork(fuserBean);
-		//	return new ModelAndView("redirect:/InsertWork");
-		}
-		
-		return new ModelAndView("redirect:/ViewUsers");
+			
+		//return new ModelAndView("redirect:/ViewUsers");
+		return new ModelAndView("redirect:/TPOHome");
 	}
 	
 		
@@ -116,9 +100,7 @@ public class AssignTPCController {
 		}
 		System.out.println("Username in Controller :"+fuserBean.getUserName());
 		userService.insertWork(fuserBean);
-		/*System.out.println(fuserBean.getUserName()+" in Contoller");
-		System.out.println(fuserBean.getUserWork()+" in Contoller");*/
-		
+
 		return new ModelAndView("redirect:/ViewFacultyTasks");
 	}
 		
@@ -132,7 +114,8 @@ public class AssignTPCController {
 			return new ModelAndView("removeTPC");
 		}
 		userService.removeTPC(userBean);
-		return new ModelAndView("redirect:/ViewUsers");
+		//return new ModelAndView("redirect:/ViewUsers");
+		return new ModelAndView("redirect:/TPOHome");
 	}
 
 }

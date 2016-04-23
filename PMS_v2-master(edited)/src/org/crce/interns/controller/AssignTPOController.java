@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.crce.interns.beans.FacultyUserBean;
 import org.crce.interns.beans.UserDetailsBean;
 import org.crce.interns.service.AssignTPOService;
 import org.crce.interns.validators.AddTPOValidator;
@@ -25,13 +26,12 @@ public class AssignTPOController {
 	@Autowired
 	AddTPOValidator validator;
 
-	
-/*
-	@RequestMapping("/")
-	public ModelAndView welcome() {
-		return new ModelAndView("index");
+	@RequestMapping(value = "/AdminHome", method = RequestMethod.GET)
+	public ModelAndView goAdminHome(@ModelAttribute("command") FacultyUserBean userBean, BindingResult result) {
+		System.out.println("In TPO Home Page\n");
+		return new ModelAndView("Admin");
 	}
-*/
+	
 	@RequestMapping(value="/ViewUsers", method = RequestMethod.GET)
 	public ModelAndView viewUsers() {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -39,9 +39,6 @@ public class AssignTPOController {
 		return new ModelAndView("viewUser", modelMap);
 	}
 
-	
-	
-	
 	@RequestMapping(value = "/AssignTPO", method = RequestMethod.GET)
 	public ModelAndView assignTPO(@ModelAttribute("command") UserDetailsBean userBean, BindingResult result) {
 		System.out.println("In Assign TPO\n");
@@ -65,7 +62,9 @@ public class AssignTPOController {
 			return new ModelAndView("assignTPO");
 		}
 		userService.assignTPO(userBean);
-		return new ModelAndView("redirect:/ViewUsers");
+		
+		//return new ModelAndView("redirect:/ViewUsers");
+		return new ModelAndView("redirect:/AdminHome");
 	}
 
 	@RequestMapping(value = "/SubmitRemoveTPO", method = RequestMethod.POST)
@@ -76,6 +75,7 @@ public class AssignTPOController {
 			return new ModelAndView("removeTPO");
 		}
 		userService.removeTPO(userBean);
-		return new ModelAndView("redirect:/ViewUsers");
+		//return new ModelAndView("redirect:/ViewUsers");
+		return new ModelAndView("redirect:/AdminHome");
 	}
 }

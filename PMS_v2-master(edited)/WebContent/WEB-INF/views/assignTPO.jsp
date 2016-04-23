@@ -29,5 +29,9 @@
 			</tr>
 		</table>
 	</form:form>
+		<tr>
+		<td><a href="AdminHome">Home</a></td>
+	</tr>
+	
 </body>
 </html>

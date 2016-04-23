@@ -34,11 +34,10 @@
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /></td>
 			</tr>
-
-
 		</table>
 	</form:form>
-	
-	
+	<tr>
+		<td><a href="TPOHome">Home</a></td>
+	</tr>
 </body>
 </html>
