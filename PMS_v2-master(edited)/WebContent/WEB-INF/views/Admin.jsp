@@ -32,7 +32,16 @@
 	<tr>
 		<td>3. <a href="removeuser.html">Remove User</a><br/></td>
 	</tr>
-	
+</table>
+
+<br/></br>
+<table>
+	<tr>
+		<td><a href="searchHome">Click here to search for something</a></td>
+	</tr>
+	<tr>
+		<td><a href="sendMail">Click here to send an email</a></td>
+	</tr>
 	<tr>
 	
 		<td><br/><br/><a href="form">Logout</a></td>

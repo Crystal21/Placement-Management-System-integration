@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,14 +40,21 @@
 <br/><br/>
 	<!-- <a href="StudentTPC.jsp">Student</a> -->
 	
-	<h2><a href="addAllotment">
+	<!-- <h2><a href="addAllotment">
 	<button>Allot New Room </button>
 	</a></h2>
 	
 	<h2><a href="viewAllotment">
 	<button>View Allotment List </button>
-	</a></h2>
+	</a></h2> -->
 <table>
+
+	<tr>
+		<td><a href="searchHome">Click here to search for something</a></td>
+	</tr>
+	<tr>
+		<td><a href="sendMail">Click here to send an email</a></td>
+	</tr>
 	<tr>
 		<td><a href="form">Logout</a></td>
 	</tr>

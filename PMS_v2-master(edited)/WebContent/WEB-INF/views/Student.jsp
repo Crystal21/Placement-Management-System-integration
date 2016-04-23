@@ -26,6 +26,13 @@
 	<tr>
 		<td><a href="resumeUpload">Click here to upload Resume</a></td>
 	</tr>
+	
+	<tr>
+		<td><a href="addFeedback">Click here to give your feedback</a></td>
+	</tr>
+	<tr>
+		<td><a href="searchHome">Click here to search for something</a></td>
+	</tr>
 	<tr>
 		<td><a href="form">Logout</a></td>
 	</tr>
