@@ -14,7 +14,6 @@
  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 
-	
 	<context:property-placeholder location="classpath:resources/database.properties" />
 	<context:annotation-config />
 	<mvc:annotation-driven />
@@ -31,6 +30,11 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<bean id="addTPOValidator" class="org.crce.interns.validators.AddTPOValidator" />
+	<bean id="addTPCValidator" class="org.crce.interns.validators.AddTPCValidator" />
+	<bean id="addTPCTaskValidator" class="org.crce.interns.validators.AddTPCTaskValidator" />
+	<bean id="rvmTPCValidator" class="org.crce.interns.validators.RemoveTPCValidator" />
 	
 	
 	<bean id="messageSource"

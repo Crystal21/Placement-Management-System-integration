@@ -35,6 +35,11 @@ public class UserDetails implements Serializable{
 	
 	@Column(name = "role_id" )
 	String roleId;
+<<<<<<< HEAD
+=======
+	
+	//int roleId;
+>>>>>>> 11ce4520ee4cf7d82bf7cf6c7b61b07f80bb6da4
 	
 	@Column(name = "created_by" )
 	String createdBy;
