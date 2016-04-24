@@ -85,23 +85,26 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 	}
 
 	@Override
-	public void insertWork(FacultyUserBean fuserBean) {
+	public int insertWork(FacultyUserBean fuserBean) {
 		FacultyUser fuser = new FacultyUser();
 
 		fuser.setUserName(fuserBean.getUserName());
 
 		fuser = assignTPCDao.getFacultyUser(fuser);
+		System.out.println(fuser);
+		if (fuser == null) {
+			System.out.println("Error: No such User Defined" + "\n");
+			return 0;
+		}
+		
 		System.out.println("UserWorkk in Service with Bean: " + fuserBean.getUserWork());
 		fuser.setUserWork(fuserBean.getUserWork());
 		System.out.println("Username in Service IMPL :" + fuser.getUserName());
 		System.out.println("UserWork in Service IMPL :" + fuser.getUserWork());
 
-		if (fuser == null) {
-			System.out.println("Error:No User Defined" + "\n");
-		}
-		// System.out.println("Username in Service IMPL :"+fuser.getUserName());
 		assignTPCDao.insertWork(fuser);
-		// TODO Auto-generated method stub
+		return 1;
+		
 	}
 
 	public List<UserDetailsBean> convertToBean(List<UserDetails> userList) {
@@ -125,7 +128,7 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 	}
 
 	@Override
-	public void removeTPC(UserDetailsBean userBean) {
+	public int removeTPC(UserDetailsBean userBean) {
 		// TODO Auto-generated method stub
 		UserDetails user = new UserDetails();
 		UserDetails checkUser = new UserDetails();
@@ -135,7 +138,8 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 		checkUser = assignTPCDao.getUser(checkUser);
 
 		if (checkUser == null) {
-			System.out.println("Error:No User Defined" + "\n");
+			System.out.println("Error: No User Defined" + "\n");
+			return 0;
 		}
 
 		if (checkUser.getRoleId().equalsIgnoreCase("3")) {
@@ -143,15 +147,17 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 			checkUser.setRoleId("1");// 1 is Student & 3 is Student tpc
 			System.out.println("After update Student Role : " + checkUser.getRoleId() + "\n");
 			assignTPCDao.removeTPC(checkUser);
+			return 1;
 		} else if (checkUser.getRoleId().equalsIgnoreCase("4")) {
 			System.out.println("Before update Faculty Role : " + checkUser.getRoleId() + "\n");
 			checkUser.setRoleId("2");// 2 is faculty & 4 is Fac tpc
 			System.out.println("After update Faculty Role : " + checkUser.getRoleId() + "\n");
 			assignTPCDao.removeTPC(checkUser);
+			return 1;
 		}
-
 		else {
-			System.out.println("Error : No Such User Exists");
+			System.out.println("Service :Error (LE) : No Such User Exists Last Error");
+			return 33;
 		}
 	}
 

@@ -4,15 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>No User</title>
+<title>Not TPO</title>
 </head>
 <body>
-No such user exists..!
+This individual cannot be removed as TPO because he/she is not a TPO
 <br/>
 <br/>
-Kindly check the username entered by you...!
-<br/>
-<br/>
-Please go back and change your preferences..! 
+Kindly go back and change your preferences..! 
 </body>
 </html>

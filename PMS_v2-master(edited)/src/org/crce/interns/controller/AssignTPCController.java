@@ -120,8 +120,15 @@ public class AssignTPCController {
 			return new ModelAndView("insertWork");
 		}
 		System.out.println("Username in Controller :"+fuserBean.getUserName());
-		userService.insertWork(fuserBean);
-
+		int a;
+		a=userService.insertWork(fuserBean);
+		
+		System.out.println("Value Returned from Service: "+a);
+		if(a==0)
+		{
+			return new ModelAndView("noUser");
+		}
+		
 		return new ModelAndView("redirect:/ViewFacultyTasks");
 	}
 		
@@ -134,7 +141,17 @@ public class AssignTPCController {
 			System.out.println("Binding Errors are present...");
 			return new ModelAndView("removeTPC");
 		}
-		userService.removeTPC(userBean);
+		int a;
+		a=userService.removeTPC(userBean);
+		System.out.println("Value Returned from Service: "+a);
+		if(a==0)
+		{
+			return new ModelAndView("noUser");
+		}
+		if(a==33)
+		{
+			return new ModelAndView("notTPC");
+		}
 		return new ModelAndView("redirect:/ViewUsersT");
 	//	return new ModelAndView("redirect:/TPOHome");
 	}

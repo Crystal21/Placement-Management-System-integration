@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Assign TPC</title>
+<title>Remove Student TPC</title>
 <style>
 .error {
 	color: #ff0000;
@@ -16,8 +16,8 @@
 </style>
 </head>
 <body>
-	<h2>Assign Student TPC</h2>
-	<form:form method="POST" action="SubmitAssignTPCF">
+	<h2>Remove Student TPC</h2>
+	<form:form method="POST" action="SubmitRemoveTPCF">
 		<table>
 			<tr>
 				<td><form:label path="userName">User name:</form:label></td>
@@ -29,5 +29,9 @@
 			</tr>
 		</table>
 	</form:form>
+	<tr>
+		<td><a href="FTPCHome">Home</a></td>
+	</tr>
+	
 </body>
 </html>

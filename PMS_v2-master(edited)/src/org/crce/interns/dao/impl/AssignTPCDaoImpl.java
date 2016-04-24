@@ -99,6 +99,7 @@ public class AssignTPCDaoImpl implements AssignTPCDao {
 
 		if (result == null) {
 			System.out.println("Error : User not present in Faculty Table");
+			return null;
 		}
 		System.out.println("UserName in DAO IMPL after query:" + result.getUserName());
 		System.out.println("UserWork in DAO IMPL after query:" + result.getUserWork());

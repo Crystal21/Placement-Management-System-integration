@@ -67,7 +67,12 @@ public class AssignTPOController {
 		System.out.println("In Assign TPO\n");
 		return new ModelAndView("assignTPO");	}
 
-	
+	@RequestMapping(value = "/RemoveTPCF", method = RequestMethod.GET)
+	public ModelAndView removeTPCF(@ModelAttribute("command") UserDetailsBean userBean, BindingResult result) {
+		System.out.println("In Remove TPCF\n");
+		return new ModelAndView("removeTPCF");
+	}
+
 	@RequestMapping(value = "/RemoveTPO", method = RequestMethod.GET)
 	public ModelAndView removeTPO(@ModelAttribute("command") UserDetailsBean userBean, BindingResult result) {
 		System.out.println("In Remove TP0\n");
@@ -126,13 +131,51 @@ public class AssignTPOController {
 	
 	@RequestMapping(value = "/SubmitRemoveTPO", method = RequestMethod.POST)
 	public ModelAndView deleteUser(@ModelAttribute("command") UserDetailsBean userBean, BindingResult bindingResult) {
+		
+		System.out.println("In Submit RemoveTPo");
 		validator.validate(userBean, bindingResult);
+		System.out.println("In Submit RemoveTPo");
 		if (bindingResult.hasErrors()) {
 			System.out.println("Binding Errors are present...");
 			return new ModelAndView("removeTPO");
 		}
-		userService.removeTPO(userBean);
+		int a;
+		a=userService.removeTPO(userBean);
+		System.out.println("Value Returned from Service: "+a);
+		if(a==0)
+		{
+			return new ModelAndView("noUser");
+		}
+		if(a==55)
+		{
+			return new ModelAndView("notTPO");
+		}
 		return new ModelAndView("redirect:/ViewUsersA");
+		//return new ModelAndView("redirect:/AdminHome");
+	}
+	
+	@RequestMapping(value = "/SubmitRemoveTPCF", method = RequestMethod.POST)
+	public ModelAndView deleteTPCF(@ModelAttribute("command") UserDetailsBean userBean, BindingResult bindingResult) {
+		
+		System.out.println("In Submit RemoveTPCF");
+		validator.validate(userBean, bindingResult);
+
+		if (bindingResult.hasErrors()) {
+			System.out.println("Binding Errors are present...");
+			return new ModelAndView("removeTPCF");
+		}
+		int a;
+		a=userService.removeTPCF(userBean);
+		System.out.println("in Remove TPCF:Value Returned from Service: "+a);
+		if(a==0)
+		{
+			return new ModelAndView("noUser");
+		}
+		if(a==55)
+		{
+			return new ModelAndView("notTPC");
+		}
+		return new ModelAndView("redirect:/ViewUsersF");
 		//return new ModelAndView("redirect:/AdminHome");
 	}
 }

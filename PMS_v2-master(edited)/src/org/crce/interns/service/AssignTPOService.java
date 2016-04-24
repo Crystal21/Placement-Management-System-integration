@@ -11,8 +11,9 @@ public interface AssignTPOService {
 
 	public List<UserDetailsBean> viewUsers();
 
-	public void removeTPO(UserDetailsBean userBean);
+	public int removeTPO(UserDetailsBean userBean);
 
 	public int assignTPCF(UserDetailsBean userBean);
 
+	public int removeTPCF(UserDetailsBean userBean);
 }

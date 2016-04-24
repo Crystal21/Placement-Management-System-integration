@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 public interface AssignTPCService {
 	public int assignTPC (UserDetailsBean userBean);
-	public void removeTPC(UserDetailsBean userBean);
+	public int removeTPC(UserDetailsBean userBean);
 	public List<UserDetailsBean> viewUsers();
 	public List<FacultyUserBean> viewFacultyTasks();
-	public void insertWork(FacultyUserBean fuserBean);
+	public int insertWork(FacultyUserBean fuserBean);
 
 /*
 	
