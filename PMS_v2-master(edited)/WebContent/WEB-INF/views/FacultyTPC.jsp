@@ -58,6 +58,16 @@
 	<tr>
 		<td><a href="form">Logout</a></td>
 	</tr>
+	
 </table>
+
+	<!-- <h2><a href="addAllotment">
+	<button>Allot New Room </button>
+	</a></h2>
+	
+	<h2><a href="viewAllotment">
+	<button>View Allotment List </button>
+	</a></h2> -->
+	
 </body>
 </html>
