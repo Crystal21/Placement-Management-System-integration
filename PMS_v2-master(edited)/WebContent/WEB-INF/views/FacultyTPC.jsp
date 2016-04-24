@@ -46,7 +46,7 @@
 	
 	<h2><a href="viewAllotment">
 	<button>View Allotment List </button>
-	</a></h2> -->
+	</a></h2>  -->
 <table>
 
 	<tr>
@@ -61,13 +61,13 @@
 	
 </table>
 
-	<!-- <h2><a href="addAllotment">
+	<h2><a href="addAllotment">
 	<button>Allot New Room </button>
 	</a></h2>
 	
 	<h2><a href="viewAllotment">
 	<button>View Allotment List </button>
-	</a></h2> -->
+	</a></h2> 
 	
 </body>
 </html>
