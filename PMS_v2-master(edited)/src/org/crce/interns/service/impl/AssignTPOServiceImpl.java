@@ -17,7 +17,7 @@ public class AssignTPOServiceImpl implements AssignTPOService {
 	private AssignTPODao userDao;
 
 	@Override
-	public void assignTPO(UserDetailsBean userBean) {
+	public int assignTPO(UserDetailsBean userBean) {
 		UserDetails user = new UserDetails();
 		UserDetails checkUser = new UserDetails();
 		BeanUtils.copyProperties(userBean, user);
@@ -27,9 +27,14 @@ public class AssignTPOServiceImpl implements AssignTPOService {
 
 		if (checkUser == null) {
 			System.out.println("Error:No User Defined" + "\n");
+			return 0;
 		}
 
 		/*if (checkUser.getRoleId()==2|| checkUser.getRoleId()==4)*/ 
+		if (checkUser.getRoleId().equalsIgnoreCase("5")) {
+			return 55;
+		}
+
 		if (checkUser.getRoleId().equalsIgnoreCase("2")
 				|| checkUser.getRoleId().equalsIgnoreCase("4")){
 			System.out.println("Before update Faculty Role ID : " + checkUser.getRoleId() + "\n");
@@ -37,15 +42,17 @@ public class AssignTPOServiceImpl implements AssignTPOService {
 			checkUser.setRoleId("5");
 			System.out.println("After update Faculty Role ID : " + checkUser.getRoleId() + "\n");
 			userDao.assignTPO(checkUser);
+			return 1;
 		}
 
 		else {
-			System.out.println("Error : No Such User Exists");
+			System.out.println("Invalid Input : Faculty ");
+			return 5;
 		}
 	}
 
 	@Override
-	public void assignTPCF(UserDetailsBean userBean) {
+	public int assignTPCF(UserDetailsBean userBean) {
 		UserDetails user = new UserDetails();
 		UserDetails checkUser = new UserDetails();
 		BeanUtils.copyProperties(userBean, user);
@@ -55,19 +62,24 @@ public class AssignTPOServiceImpl implements AssignTPOService {
 
 		if (checkUser == null) {
 			System.out.println("Error:No User Defined" + "\n");
+			return 0;
 		}
 
 		/*if (checkUser.getRoleId()==2|| checkUser.getRoleId()==4)*/ 
-		if (checkUser.getRoleId().equalsIgnoreCase("1")){
+		if (checkUser.getRoleId().equalsIgnoreCase("3")) {
+			return 34;
+		}
+		else if (checkUser.getRoleId().equalsIgnoreCase("1")){
 			System.out.println("Before update Student Role ID : " + checkUser.getRoleId() + "\n");
 			//checkUser.setRoleId(5);
 			checkUser.setRoleId("3");
 			System.out.println("After update Student Role ID : " + checkUser.getRoleId() + "\n");
 			userDao.assignTPO(checkUser);
+			return 1;
 		}
-
 		else {
-			System.out.println("Error : No Such User Exists");
+			System.out.println("Invalid Input : Student");
+			return 3;
 		}
 	}
 	

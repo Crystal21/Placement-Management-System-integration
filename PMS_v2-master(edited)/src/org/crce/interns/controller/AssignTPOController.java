@@ -81,8 +81,20 @@ public class AssignTPOController {
 			System.out.println("Binding Errors are present...");
 			return new ModelAndView("assignTPO");
 		}
-		userService.assignTPO(userBean);
-		
+		int a;
+		a=userService.assignTPO(userBean);
+		System.out.println("Value Returned from Service: "+a);
+		if(a==0)
+		{
+			return new ModelAndView("noUser");
+		}
+		if(a==5)
+		{
+			return new ModelAndView("notFac");
+		}
+		if(a==55){
+			return new ModelAndView("alTPO");
+		}
 		return new ModelAndView("redirect:/ViewUsersA");
 		//return new ModelAndView("redirect:/AdminHome");
 	}
@@ -92,10 +104,22 @@ public class AssignTPOController {
 		validator.validate(userBean, bindingResult);
 		if (bindingResult.hasErrors()) {
 			System.out.println("Binding Errors are present...");
-			return new ModelAndView("assignTPO");
+			return new ModelAndView("assignTPCF");
 		}
-		userService.assignTPCF(userBean);
+		int a;
+		a=userService.assignTPCF(userBean);
 		//return new ModelAndView("redirect:/FTPCHome");
+		if(a==0)
+		{
+			return new ModelAndView("noUser");
+		}
+		if(a==3)
+		{
+			return new ModelAndView("notStud");	
+		}
+		if(a==34){
+			return new ModelAndView("alTPC");
+		}
 		return new ModelAndView("redirect:/ViewUsersF");
 		//return new ModelAndView("redirect:/AdminHome");
 	}

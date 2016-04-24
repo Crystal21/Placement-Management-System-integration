@@ -70,15 +70,6 @@ public class AssignTPCController {
 		return new ModelAndView("assignTPC");
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/RemoveTPC", method = RequestMethod.GET)
 	public ModelAndView removeTPC(@ModelAttribute("command") UserDetailsBean userBean, BindingResult result) {
 		System.out.println("In Remove TPC\n");
@@ -96,8 +87,23 @@ public class AssignTPCController {
 		//System.out.println("Task Assigned is "+fuserBean.getUserWork());
 		int a;
 		a=userService.assignTPC(userBean);
-		FacultyUserBean fuserBean= new FacultyUserBean();
-			
+	//	FacultyUserBean fuserBean= new FacultyUserBean();
+			System.out.println("Value Returned from Service: "+a);
+			if(a==0)
+			{
+				return new ModelAndView("noUser");
+			}
+			if(a==3)
+			{
+				return new ModelAndView("notStud");	
+			}
+			if(a==4)
+			{
+				return new ModelAndView("notFac");
+			}
+			if(a==34){
+				return new ModelAndView("alTPC");
+			}
 		return new ModelAndView("redirect:/ViewUsersT");
 		//return new ModelAndView("redirect:/TPOHome");
 	}

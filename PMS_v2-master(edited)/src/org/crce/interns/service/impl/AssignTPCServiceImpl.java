@@ -19,27 +19,13 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 	@Autowired
 	private AssignTPCDao assignTPCDao;
 
-	/*Methods to Insert the data */
+	/* Methods to Insert the data */
 	@Override
 	public int assignTPC(UserDetailsBean userBean) {
 		UserDetails user = new UserDetails();
 		UserDetails checkUser = new UserDetails();
-		RMUser rmuser= new RMUser();
-		
-		
-		
-		
-		/*FacultyUserBean fuserBean = new FacultyUserBean();
-		FacultyUser fuser = new FacultyUser();
-		fuser.setUsername(userBean.getUsername());
-		BeanUtils.copyProperties(fuser,fuserBean);
-		System.out.println("Frm Hell"+fuserBean.getUsername());
-		
-		insertWork(fuserBean);*/
-		
-		
-		
-		
+		RMUser rmuser = new RMUser();
+
 		String st;
 		BeanUtils.copyProperties(userBean, user);
 		checkUser.setUserName(userBean.getUserName());
@@ -47,26 +33,27 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 		checkUser = assignTPCDao.getUser(checkUser);
 
 		System.out.println("User Role ID from JSP : " + userBean.getRoleId() + "\n");
-		String roleID=userBean.getRoleId();
+		String roleID = userBean.getRoleId();
 		System.out.println(roleID);
-		rmuser=assignTPCDao.getUserRole(roleID);
-		
-		System.out.println("User Id in RM Table: "+rmuser.getRole_id());
-		System.out.println("User Role in RM Table: "+rmuser.getUserRole());
-		
+		rmuser = assignTPCDao.getUserRole(roleID);
+
+		System.out.println("User Id in RM Table: " + rmuser.getRole_id());
+		System.out.println("User Role in RM Table: " + rmuser.getUserRole());
+
 		if (checkUser == null) {
 			System.out.println("Error:No User Defined" + "\n");
+			return 0;
 		}
 
 		System.out.println("User Role ID from DB : " + checkUser.getRoleId() + "\n");
 		/*
-		 *1-Student 
-		 *2-Faculty
-		 *3-Student-TPC
-		 *4-Faculty-TPC
+		 * 1-Student 2-Faculty 3-Student-TPC 4-Faculty-TPC
 		 */
 		st = userBean.getRoleId();
-		if (st.equalsIgnoreCase("1")) {
+		if (checkUser.getRoleId().equalsIgnoreCase("3")||checkUser.getRoleId().equalsIgnoreCase("4")) {
+			return 34;
+		}
+		else if (st.equalsIgnoreCase("1")) {
 
 			if (checkUser.getRoleId().equalsIgnoreCase(userBean.getRoleId())) {
 				System.out.println("Before update Student Role ID : " + checkUser.getRoleId() + "\n");
@@ -76,11 +63,9 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 				return 1;
 			} else {
 				System.out.println("Invalid Input: Student" + "\n");
-				return 0;
+				return 3;
 			}
-		}
-
-		else if (st.equalsIgnoreCase("2")) {
+		} else if (st.equalsIgnoreCase("2")) {
 			System.out.println(userBean.getRoleId());
 			if (checkUser.getRoleId().equalsIgnoreCase(userBean.getRoleId())) {
 				System.out.println("Before update Faculty Role ID : " + checkUser.getRoleId() + "\n");
@@ -90,7 +75,7 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 				return 1;
 			} else {
 				System.out.println("Invalid Input : Faculty" + "\n");
-				return 0;
+				return 4;
 			}
 		} else {
 			System.out.println("Error : No Such User Exists");
@@ -98,27 +83,27 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 		}
 
 	}
-	
+
 	@Override
 	public void insertWork(FacultyUserBean fuserBean) {
 		FacultyUser fuser = new FacultyUser();
-		
+
 		fuser.setUserName(fuserBean.getUserName());
-		
+
 		fuser = assignTPCDao.getFacultyUser(fuser);
-		System.out.println("UserWorkk in Service with Bean: "+fuserBean.getUserWork());
+		System.out.println("UserWorkk in Service with Bean: " + fuserBean.getUserWork());
 		fuser.setUserWork(fuserBean.getUserWork());
-		System.out.println("Username in Service IMPL :"+fuser.getUserName());
-		System.out.println("UserWork in Service IMPL :"+fuser.getUserWork());
-		
+		System.out.println("Username in Service IMPL :" + fuser.getUserName());
+		System.out.println("UserWork in Service IMPL :" + fuser.getUserWork());
+
 		if (fuser == null) {
 			System.out.println("Error:No User Defined" + "\n");
 		}
-		//System.out.println("Username in Service IMPL :"+fuser.getUserName());
+		// System.out.println("Username in Service IMPL :"+fuser.getUserName());
 		assignTPCDao.insertWork(fuser);
 		// TODO Auto-generated method stub
 	}
-		
+
 	public List<UserDetailsBean> convertToBean(List<UserDetails> userList) {
 		List<UserDetailsBean> userBeanList = new ArrayList<UserDetailsBean>();
 		for (UserDetails user : userList) {
@@ -128,7 +113,7 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 		}
 		return userBeanList;
 	}
-	
+
 	public List<FacultyUserBean> convertToBeanFaculty(List<FacultyUser> userList) {
 		List<FacultyUserBean> userBeanList = new ArrayList<FacultyUserBean>();
 		for (FacultyUser fuser : userList) {
@@ -138,9 +123,6 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 		}
 		return userBeanList;
 	}
-
-
-	
 
 	@Override
 	public void removeTPC(UserDetailsBean userBean) {
@@ -158,12 +140,12 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 
 		if (checkUser.getRoleId().equalsIgnoreCase("3")) {
 			System.out.println("Before update Student Role : " + checkUser.getRoleId() + "\n");
-			checkUser.setRoleId("1");//1 is Student & 3 is Student tpc
+			checkUser.setRoleId("1");// 1 is Student & 3 is Student tpc
 			System.out.println("After update Student Role : " + checkUser.getRoleId() + "\n");
 			assignTPCDao.removeTPC(checkUser);
 		} else if (checkUser.getRoleId().equalsIgnoreCase("4")) {
 			System.out.println("Before update Faculty Role : " + checkUser.getRoleId() + "\n");
-			checkUser.setRoleId("2");//2 is faculty & 4 is Fac tpc
+			checkUser.setRoleId("2");// 2 is faculty & 4 is Fac tpc
 			System.out.println("After update Faculty Role : " + checkUser.getRoleId() + "\n");
 			assignTPCDao.removeTPC(checkUser);
 		}
@@ -172,9 +154,7 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 			System.out.println("Error : No Such User Exists");
 		}
 	}
-	
-	
-	
+
 	@Override
 	public List<UserDetailsBean> viewUsers() {
 		// TODO Auto-generated method stub
@@ -188,8 +168,5 @@ public class AssignTPCServiceImpl implements AssignTPCService {
 		List<FacultyUser> userList = assignTPCDao.viewFacultyTasks();
 		return convertToBeanFaculty(userList);
 	}
-
-	
-	
 
 }
