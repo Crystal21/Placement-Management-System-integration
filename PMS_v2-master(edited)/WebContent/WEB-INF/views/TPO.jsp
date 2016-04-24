@@ -53,6 +53,12 @@
 			<td>9.<a href="InsertMonth.html">Insert Month to view Events
 					Users</a><br /></td>
 		</tr>
+		<tr>
+			<td>10.<a href="view-candidate.html">Manage List of Applicants of all Companies</a><br /></td>
+		</tr>
+		<tr>
+			<td>11.<a href="getEventForm.html">Add Events</a><br /></td>
+		</tr>
 	</table>
 	<br />
 	<br />
