@@ -3,6 +3,7 @@ package org.crce.interns.dao.impl;
 
 //import org.crce.interns.model.Allotment;
 import org.crce.interns.model.Company;
+import org.crce.interns.model.CompanyJob;
 //import org.crce.interns.beans.ProfileBean;
 import org.crce.interns.model.Criteria;
 import org.crce.interns.model.Job;
@@ -52,6 +53,12 @@ public class ManageProfileDaoImpl implements ManageProfileDao{
 	public void createProfile(Company company) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(company);			
+	}
+
+	@Override
+	public void createProfile(CompanyJob companyJob) {
+		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(companyJob);			
 	}
 	
 }

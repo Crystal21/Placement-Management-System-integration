@@ -35,9 +35,10 @@
 	<button>Create Job Profile</button>
 	</a></h2>
 	
-	<h2><a href="viewProfile">
+	 <h2><a href="viewProfile">
 	<button>View Profile List </button>
-	</a></h2>
+	</a></h2> 
+	
 <table>
 	<tr>
 		<td><a href="searchHome">Click here to search for something</a></td>

@@ -3,7 +3,10 @@ package org.crce.interns.controller;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,8 +15,10 @@ import java.util.List;
 
 //import org.crce.interns.beans.AllotmentBean;
 import org.crce.interns.beans.CompanyBean;
+import org.crce.interns.beans.CompanyJobBean;
 import org.crce.interns.beans.CriteriaBean;
 import org.crce.interns.beans.JobBean;
+import org.crce.interns.beans.LoginForm;
 import org.crce.interns.model.Job;
 //import org.crce.interns.model.Allotment;
 //import org.crce.interns.beans.ProfileBean;
@@ -21,6 +26,7 @@ import org.crce.interns.service.ManageProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,12 +54,13 @@ public class ManageProfile extends HttpServlet{
 	@RequestMapping(value = "/saveProfile", method = RequestMethod.POST)
 	// public ModelAndView addProfile(@ModelAttribute("profileBean")ProfileBean
 	// profileBean,BindingResult result) {
-	public ModelAndView addProfile(@RequestParam Map<String, String> r) throws Exception {
+	public ModelAndView addProfile(HttpServletRequest request, @RequestParam Map<String, String> r) throws Exception {
 		// manageProfileService.addProfile(profileBean);
 
 		JobBean jobBean = new JobBean();
 		CriteriaBean criteriaBean = new CriteriaBean();
 		CompanyBean companyBean = new CompanyBean();
+		CompanyJobBean companyJobBean = new CompanyJobBean();
 
 		jobBean.setJob_id(r.get("job_id"));
 		jobBean.setEvent_id(r.get("event_id"));
@@ -66,6 +73,7 @@ public class ManageProfile extends HttpServlet{
 		jobBean.setModified_date(null);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date(); 
 		//Date sdf=new Date();
 		//DateFormat sdf = new SimpleDateFormat("");
 		//DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -77,8 +85,13 @@ public class ManageProfile extends HttpServlet{
 		//else
 		jobBean.setDrive_date(sdf.parse(r.get("drive_date")));
 				
-		jobBean.setCreated_by(r.get("created_by"));
-		jobBean.setCreated_date(sdf.parse(r.get("created_date")));
+		//jobBean.setCreated_by(r.get("created_by"));
+		
+		jobBean.setCreated_by((String)request.getSession(true).getAttribute("userName"));
+		
+		jobBean.setCreated_date(date);
+		//jobBean.setCreated_date(sdf.parse(r.get("created_date")));
+		
 		jobBean.setModified_by(r.get("modified_by"));
 		//jobBean.setModified_date(sdf.parse(r.get("modified_date")));
 
@@ -100,12 +113,17 @@ public class ManageProfile extends HttpServlet{
 		companyBean.setCompany_name(r.get("company_name"));
 		companyBean.setCompany_address(r.get("company_address"));
 		companyBean.setCriteria_id(criteriaBean.getCriteria_id());
+		
+		companyJobBean.setCompany_id(companyBean.getCompany_id());
+		companyJobBean.setJob_id(jobBean.getJob_id());
+		
 		//companyBean.setCriteria(criteriaBean.getCriteria_id());
 		
 		
 		manageProfileService.addProfile(jobBean);
 		manageProfileService.addProfile(criteriaBean);
 		manageProfileService.addProfile(companyBean);
+		manageProfileService.addProfile(companyJobBean);
 
 		return new ModelAndView("TPO");
 	}
@@ -116,10 +134,12 @@ public class ManageProfile extends HttpServlet{
 		JobBean jobBean = new JobBean(); // declaring
 		CriteriaBean criteriaBean = new CriteriaBean();
 		CompanyBean companyBean = new CompanyBean();
+		CompanyJobBean companyJobBean = new CompanyJobBean();
 
 		model.addAttribute("profileBean", jobBean); // adding in model
 		model.addAttribute("profileBean", criteriaBean);
 		model.addAttribute("profileBean", companyBean);
+		model.addAttribute("profileBean", companyJobBean);
 		
 		System.out.println("In Profile Controller");
 		return new ModelAndView("addProfile");
@@ -130,8 +150,41 @@ public class ManageProfile extends HttpServlet{
 	public ModelAndView listProfile() {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("profiles",  prepareListofBean(manageProfileService.listProfile()));
-		return new ModelAndView("viewProfile", model);
+		//return new ModelAndView("viewProfile", model);
+		return new ModelAndView("CompaniesPage", model);
 	}
+	
+	@RequestMapping(value="/Company/companyname/{companyname}", method = RequestMethod.GET)
+	public ModelAndView Companies(@PathVariable String companyname) {
+		
+	    return new ModelAndView("Company");
+		
+	}
+	
+	
+	@RequestMapping(value="/JobPosts/companyname", method = RequestMethod.GET)
+	public ModelAndView JobPosting() {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("profiles",  prepareListofBean(manageProfileService.listProfile()));
+		return new ModelAndView("JobPosts", model);
+		//return new ModelAndView("CompaniesPage", model);
+	}
+	
+	@RequestMapping(value="/JobPosts/companyname/{companyname}", method = RequestMethod.GET)
+	public ModelAndView JobPosting1(@PathVariable String companyname) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("profiles",  prepareListofBean(manageProfileService.listProfile()));
+		return new ModelAndView("JobPosts", model);
+		//return new ModelAndView("CompaniesPage", model);
+	}
+	
+	/*@RequestMapping(value="/JobPosts1",method = RequestMethod.GET)
+	public ModelAndView JobPosts(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("JobPosts");
+		model.addObject("companyname", request.getParameter("companyname"));
+		return model;
+	}*/
+	
 	
 	private List<JobBean> prepareListofBean(List<Job> profiles) {
 		

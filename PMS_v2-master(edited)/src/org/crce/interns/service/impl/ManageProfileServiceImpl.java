@@ -4,12 +4,14 @@ package org.crce.interns.service.impl;
 import java.util.List;
 
 import org.crce.interns.beans.CompanyBean;
+import org.crce.interns.beans.CompanyJobBean;
 import org.crce.interns.beans.CriteriaBean;
 import org.crce.interns.beans.JobBean;
 //import org.crce.interns.beans.ProfileBean;
 import org.crce.interns.dao.ManageProfileDao;
 //import org.crce.interns.model.Allotment;
 import org.crce.interns.model.Company;
+import org.crce.interns.model.CompanyJob;
 import org.crce.interns.model.Criteria;
 import org.crce.interns.model.Job;
 //import org.crce.interns.model.Profile;
@@ -57,6 +59,15 @@ public class ManageProfileServiceImpl implements ManageProfileService{
 		Company company = new Company();
 		BeanUtils.copyProperties(companyBean, company);
 		manageProfileDao.createProfile(company);
+	}
+
+	//@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public void addProfile(CompanyJobBean companyJobBean) {
+		// TODO Auto-generated method stub
+		CompanyJob companyJob = new CompanyJob();
+		BeanUtils.copyProperties(companyJobBean, companyJob);
+		manageProfileDao.createProfile(companyJob);
 	}
 
 	/*

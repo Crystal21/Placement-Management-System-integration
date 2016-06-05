@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.crce.interns.beans.JobBean;
 import org.crce.interns.model.Company;
+import org.crce.interns.model.CompanyJob;
 import org.crce.interns.model.Criteria;
 import org.crce.interns.model.Job;
 
@@ -15,6 +16,7 @@ public interface ManageProfileDao {
 	public void createProfile(Job job);
 	public void createProfile(Criteria criteria);
 	public void createProfile(Company company);
+	public void createProfile(CompanyJob companyJob);
 	public List<Job> listProfile();
 
 

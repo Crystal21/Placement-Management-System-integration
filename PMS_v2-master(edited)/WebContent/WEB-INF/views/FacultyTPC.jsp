@@ -38,15 +38,7 @@
 </form:form>
 
 <br/><br/>
-	<!-- <a href="StudentTPC.jsp">Student</a> -->
 	
-	<!-- <h2><a href="addAllotment">
-	<button>Allot New Room </button>
-	</a></h2>
-	
-	<h2><a href="viewAllotment">
-	<button>View Allotment List </button>
-	</a></h2>  -->
 <table>
 
 	<tr>

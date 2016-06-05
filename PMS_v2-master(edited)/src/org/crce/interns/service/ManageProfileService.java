@@ -3,6 +3,7 @@ package org.crce.interns.service;
 import java.util.List;
 
 import org.crce.interns.beans.CompanyBean;
+import org.crce.interns.beans.CompanyJobBean;
 import org.crce.interns.beans.CriteriaBean;
 import org.crce.interns.beans.JobBean;
 //import org.crce.interns.model.Allotment;
@@ -18,6 +19,7 @@ public interface ManageProfileService {
 	public void addProfile(JobBean jobBean);
 	public void addProfile(CriteriaBean criteriaBean);
 	public void addProfile(CompanyBean companyBean);
+	public void addProfile(CompanyJobBean companyJobBean);
 	public List<Job> listProfile();
 
 }

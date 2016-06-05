@@ -84,12 +84,12 @@
 			
 			<tr>
 				<td>Created Date :</td>
-				<td><input name="created_date" placeholder="yyyy/mm/dd" /></td>
+				<td><input name="created_date" placeholder="yyyy/mm/dd" type="hidden"/></td>
 			</tr>
 			 
 			<tr>
 				<td>Created By :</td>
-				<td><input name="created_by" /></td>
+				<td><input name="created_by" type="hidden"/></td>
 			</tr>
 			 
 			<tr>
